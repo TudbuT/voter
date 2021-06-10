@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    implementation atj('org.codehaus.groovy:groovy-all:3.0.5')
+    implementation atj('org.codehaus.groovy:groovy-all:+')
     testImplementation atj('org.junit.jupiter:junit-jupiter-api:5.7.0')
     testRuntimeOnly atj('org.junit.jupiter:junit-jupiter-engine:5.7.0')
     implementation atj(files('TuddyLIB.jar'))
@@ -29,10 +29,8 @@ jar {
         configurations.atj.collect {
             !it.exists() ? null : it.isDirectory() ? it : zipTree(it)
         }
-    }
-    exclude {
-        'META-INF'
-        '*.txt'
+    } {
+        exclude 'META-INF', '*.txt'
     }
 
     manifest{attributes([
