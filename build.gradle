@@ -1,0 +1,37 @@
+plugins {
+    id 'groovy'
+}
+
+group 'tudbut.voter'
+version '1.0-SNAPSHOT'
+
+configurations {
+    atj
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation atj('org.codehaus.groovy:groovy-all:3.0.5')
+    testImplementation atj('org.junit.jupiter:junit-jupiter-api:5.7.0')
+    testRuntimeOnly atj('org.junit.jupiter:junit-jupiter-engine:5.7.0')
+    implementation atj(files('TuddyLIB.jar'))
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    from {
+        configurations.atj.collect {
+            !it.exists() ? null : it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    exclude {
+        'META-INF'
+        '*.txt'
+    }
+}
