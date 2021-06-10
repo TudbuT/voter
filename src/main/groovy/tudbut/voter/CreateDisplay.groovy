@@ -28,5 +28,6 @@ class CreateDisplay extends Display {
         panel.removeAll()
         panel.repaint()
         new FileRW("result.cfg").setContent(app.config.toString())
+        System.exit(0)
     }
 }

@@ -51,6 +51,18 @@ class VoteComponent extends Container {
         })
         add(button)
 
+        if(createMode) {
+            button = new Button("Save & End")
+            button.setBounds(75, 350, 150, 30)
+            button.addActionListener({
+                voter.stats[idx] = val
+                display.app.savePartyToConfig(voter, Main.cid)
+                calculator.recalculate()
+                display.displayResults()
+            })
+            add(button)
+        }
+
     }
 
     @Override
