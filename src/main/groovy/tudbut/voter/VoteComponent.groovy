@@ -1,8 +1,6 @@
 package tudbut.voter
 
-import javax.swing.JButton
-import javax.swing.JComponent
-import javax.swing.JTextArea
+
 import java.awt.*
 import java.awt.event.*
 
@@ -20,7 +18,7 @@ class VoteComponent extends Container {
     int pxLen = 250
     float val = 0.5f
 
-    VoteComponent(StatDescription description, RankingCalculator calculator, Party voter, int idx, Display display) {
+    VoteComponent(StatDescription description, RankingCalculator calculator, Party voter, int idx, Display display, boolean createMode) {
         setA(description.a)
         setB(description.b)
         setCalculator(calculator)
@@ -32,22 +30,27 @@ class VoteComponent extends Container {
 
         TextArea areaA = new TextArea(a)
         TextArea areaB = new TextArea(b)
-        areaA.setBounds(0,0, 140, 100)
-        areaB.setBounds(160,0, 140, 100)
+        areaA.setBounds(0, 0, 140, 100)
+        areaB.setBounds(160, 0, 140, 100)
         areaA.setFocusable(false)
         areaB.setFocusable(false)
         add(areaA)
         add(areaB)
 
-        Button button = new Button("Next")
+        Button button
+        button = new Button("Next")
         button.setBounds(120, 300, 60, 30)
         button.addActionListener({
             voter.stats[idx] = val
+            if(createMode)
+                display.app.savePartyToConfig(voter, Main.cid)
             calculator.recalculate()
-            display.app.statDisplay.displayResults()
+            if (display.app.statDisplay != null)
+                display.app.statDisplay.displayResults()
             display.next()
         })
         add(button)
+
     }
 
     @Override

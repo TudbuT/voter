@@ -38,11 +38,24 @@ class App {
         Party party = new Party()
         party.name = preferences.getString('name')
         party.stats = new float[config.getInteger('dimensions')]
-        TCNArray stats = preferences.getArray('stats')
-        party.stats.eachWithIndex {it, idx ->
-            party.stats[idx] = stats.getFloat(idx)
+        if(Main.cid == null || preferences.getArray('stats') != null) {
+            party.statsLoaded = true
+            TCNArray stats = preferences.getArray('stats')
+            party.stats.eachWithIndex { it, idx ->
+                party.stats[idx] = stats.getFloat(idx)
+            }
         }
         return party
+    }
+
+    void savePartyToConfig(Party party, int i) {
+        TCN preferences = config.getArray('parties').getSub(i)
+        preferences.set('name', party.name)
+        preferences.set('stats', new TCNArray())
+        TCNArray stats = preferences.getArray('stats')
+        party.stats.each {
+            stats.add(it)
+        }
     }
 
     StatDescription getDescription(int id) {
