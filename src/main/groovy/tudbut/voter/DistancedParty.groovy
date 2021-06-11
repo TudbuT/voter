@@ -4,17 +4,15 @@ class DistancedParty {
 
     Party party
     float distance
-    float distanceUnc
     RankingCalculator calculatedBy
 
-    DistancedParty(Party party, float distance, float distanceUnc, RankingCalculator calculator) {
+    DistancedParty(Party party, float distance, RankingCalculator calculator) {
         setParty(party)
         setDistance(distance)
-        setDistanceUnc(distanceUnc)
         setCalculatedBy(calculator)
     }
 
     float getAgreement() {
-        return 1 - (distanceUnc / party.stats.length) as float
+        return 1 - (distance / party.stats.length) as float
     }
 }
