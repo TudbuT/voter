@@ -17,7 +17,7 @@ class Display {
     Container panel = new Container()
     App app
     static Point mouseAtStartup = MouseInfo.pointerInfo.location
-    static int i = mouseAtStartup.x / 2 as int
+    static int i = mouseAtStartup.x / 4 as int
     static int nid = 0
     int id
     static boolean bm = false
@@ -27,7 +27,7 @@ class Display {
         this.app = app
         frame = new Frame("Voter")
         frame.setSize(300, 500)
-        frame.setLocation(i, mouseAtStartup.y / 2 as int)
+        frame.setLocation(i, mouseAtStartup.y / 4 as int)
         i += 300
         sleep 100
         frame.setSize(300, 500)

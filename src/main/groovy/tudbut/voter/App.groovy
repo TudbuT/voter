@@ -38,7 +38,7 @@ class App {
         Party party = new Party()
         party.name = preferences.getString('name')
         party.stats = new float[config.getInteger('dimensions')]
-        if(Main.cid == null || preferences.getArray('stats') != null) {
+        if(Starter.cid == null || preferences.getArray('stats') != null) {
             party.statsLoaded = true
             TCNArray stats = preferences.getArray('stats')
             party.stats.eachWithIndex { it, idx ->

@@ -15,9 +15,9 @@ class CreateDisplay extends Display {
             return
         }
         panel.removeAll()
-        VoteComponent component = new VoteComponent(app.getDescription(i), app.calculator, app.parties[Main.cid], i, this, true)
-        if(app.parties[Main.cid].statsLoaded)
-            component.val = app.parties[Main.cid].stats[i]
+        VoteComponent component = new VoteComponent(app.getDescription(i), app.calculator, app.parties[Starter.cid], i, this, true)
+        if(app.parties[Starter.cid].statsLoaded)
+            component.val = app.parties[Starter.cid].stats[i]
         component.setVisible(true)
         component.setSize(300, 500)
         panel.add(component)

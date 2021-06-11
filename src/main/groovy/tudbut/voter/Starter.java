@@ -8,13 +8,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class Main {
+public class Starter {
     
     public static Integer cid = null;
     
     public static void main(String[] args) throws IOException, TCN.TCNException {
         if (args.length == 0) {
-            App app = new App(TCN.read(new StreamReader(ClassLoader.getSystemResourceAsStream("main.cfg")).readAllAsString()));
+            App app = new App(TCN.read(new StreamReader(new File("result.cfg").exists() ? new FileInputStream("result.cfg") : ClassLoader.getSystemResourceAsStream("main.cfg")).readAllAsString()));
             app.initParties();
             app.initCalculator();
             app.initDisplay();

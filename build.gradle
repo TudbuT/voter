@@ -34,6 +34,6 @@ jar {
     }
 
     manifest{attributes([
-            'Main-Class': 'tudbut.voter.Main'
+            'Main-Class': 'tudbut.voter.Starter'
     ])}
 }

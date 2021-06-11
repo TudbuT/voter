@@ -43,7 +43,7 @@ class VoteComponent extends Container {
         button.addActionListener({
             voter.stats[idx] = val
             if(createMode)
-                display.app.savePartyToConfig(voter, Main.cid)
+                display.app.savePartyToConfig(voter, Starter.cid)
             calculator.recalculate()
             if (display.app.statDisplay != null)
                 display.app.statDisplay.displayResults()
@@ -56,7 +56,7 @@ class VoteComponent extends Container {
             button.setBounds(75, 350, 150, 30)
             button.addActionListener({
                 voter.stats[idx] = val
-                display.app.savePartyToConfig(voter, Main.cid)
+                display.app.savePartyToConfig(voter, Starter.cid)
                 calculator.recalculate()
                 display.displayResults()
             })
